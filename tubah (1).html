@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tubah Subdivision — Mezam Division, NW Cameroon</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1a5c2e;
+    --green-mid: #2d8a4e;
+    --green-light: #4db877;
+    --green-pale: #e8f5ed;
+    --red-deep: #8b1a1a;
+    --red-mid: #c0392b;
+    --red-accent: #e74c3c;
+    --yellow-gold: #d4a017;
+    --yellow-light: #f5c842;
+    --yellow-pale: #fef9e7;
+    --white: #ffffff;
+    --off-white: #f9faf7;
+    --gray-soft: #e5ede8;
+    --text-dark: #1a2e1f;
+    --text-mid: #3a5040;
+    --text-light: #6b8a72;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--green-deep);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem;
+    height: 64px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--yellow-light);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--white); }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    text-decoration: none; color: rgba(255,255,255,0.82);
+    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--yellow-light); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(145deg, var(--green-deep) 0%, #0f3d1e 50%, #1a2e1f 100%);
+    overflow: hidden;
+    padding-top: 64px;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(77,184,119,0.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(212,160,23,0.10) 0%, transparent 40%),
+      radial-gradient(circle at 60% 80%, rgba(139,26,26,0.08) 0%, transparent 40%);
+  }
+  .hero-stripes {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 8px;
+    display: flex;
+  }
+  .hero-stripe { flex: 1; height: 100%; }
+  .stripe-green { background: var(--green-mid); }
+  .stripe-red { background: var(--red-accent); }
+  .stripe-yellow { background: var(--yellow-gold); }
+  .hero-content {
+    position: relative; text-align: center;
+    padding: 2rem; max-width: 780px;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(212,160,23,0.18);
+    border: 1px solid rgba(212,160,23,0.4);
+    color: var(--yellow-light);
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 0.4rem 1.2rem;
+    border-radius: 100px; margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900; line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 1rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: normal; color: var(--yellow-light);
+  }
+  .hero-sub {
+    font-size: 1.05rem; color: rgba(255,255,255,0.68);
+    line-height: 1.7; margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-cta {
+    display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--yellow-gold); color: var(--text-dark);
+    font-weight: 600; font-size: 0.9rem; letter-spacing: 0.04em;
+    padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(212,160,23,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,160,23,0.45); }
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.4); color: var(--white);
+    font-weight: 500; font-size: 0.9rem; letter-spacing: 0.04em;
+    padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+  /* ── STATS BAND ── */
+  .stats-band {
+    background: var(--green-deep);
+    padding: 1.5rem 3rem;
+    display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+    border-bottom: 4px solid var(--yellow-gold);
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--yellow-light);
+  }
+  .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.65); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.2rem; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .section-tag::before { content: ''; display: block; width: 28px; height: 2px; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900; line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+  .section-desc { font-size: 1rem; line-height: 1.75; color: var(--text-light); max-width: 560px; }
+
+  /* ── HEALTH ── */
+  #health { background: var(--off-white); }
+  #health .section-tag { color: var(--red-mid); }
+  #health .section-tag::before { background: var(--red-mid); }
+  #health .section-title { color: var(--text-dark); }
+  .health-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+  .health-card {
+    background: var(--white);
+    border-radius: 14px; padding: 1.8rem;
+    border-left: 4px solid var(--red-mid);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .health-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.1); }
+  .health-card .card-icon {
+    width: 42px; height: 42px; background: #fdecea;
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 1rem;
+  }
+  .health-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .health-card p { font-size: 0.88rem; line-height: 1.65; color: var(--text-light); }
+  .health-stat {
+    margin-top: 0.8rem; display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8rem; font-weight: 600; color: var(--red-mid);
+  }
+  .pill {
+    display: inline-block; padding: 0.2rem 0.7rem;
+    border-radius: 100px; font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .pill-red { background: #fdecea; color: var(--red-mid); }
+  .pill-green { background: #e8f5ed; color: var(--green-deep); }
+  .pill-yellow { background: #fef9e7; color: #9a6f00; }
+
+  /* ── AGRICULTURE ── */
+  #agriculture { background: var(--green-pale); }
+  #agriculture .section-tag { color: var(--green-deep); }
+  #agriculture .section-tag::before { background: var(--green-deep); }
+  .agri-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: start; margin-top: 3rem; }
+  .agri-cards { display: flex; flex-direction: column; gap: 1rem; }
+  .agri-card {
+    background: var(--white); border-radius: 12px; padding: 1.4rem 1.6rem;
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-top: 3px solid var(--green-mid);
+    transition: transform 0.2s;
+  }
+  .agri-card:hover { transform: translateX(4px); }
+  .agri-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .agri-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .agri-card p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+  .agri-side {
+    background: var(--green-deep); color: var(--white);
+    border-radius: 16px; padding: 2rem; position: relative; overflow: hidden;
+  }
+  .agri-side::before {
+    content: '🌿'; position: absolute; right: -10px; bottom: -20px;
+    font-size: 8rem; opacity: 0.12;
+  }
+  .agri-side h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 1.2rem; }
+  .progress-item { margin-bottom: 1.2rem; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.35rem; color: rgba(255,255,255,0.85); }
+  .progress-bar { height: 6px; background: rgba(255,255,255,0.15); border-radius: 100px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 100px; background: var(--yellow-light); }
+
+  /* ── LAND DISPUTES ── */
+  #land { background: var(--yellow-pale); }
+  #land .section-tag { color: var(--yellow-gold); }
+  #land .section-tag::before { background: var(--yellow-gold); }
+  .land-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .land-card {
+    background: var(--white); border-radius: 14px; padding: 1.8rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-bottom: 4px solid var(--yellow-gold);
+    transition: transform 0.2s;
+  }
+  .land-card:hover { transform: translateY(-4px); }
+  .land-card .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 900; color: var(--yellow-gold); margin-bottom: 0.5rem;
+  }
+  .land-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; }
+  .land-card p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+  .land-note {
+    margin-top: 2.5rem; background: var(--white); border-radius: 12px;
+    padding: 1.4rem 1.8rem; border-left: 4px solid var(--red-mid);
+    display: flex; gap: 1rem; align-items: flex-start;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .land-note .icon { font-size: 1.4rem; flex-shrink: 0; }
+  .land-note p { font-size: 0.87rem; color: var(--text-mid); line-height: 1.65; }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--off-white); }
+  #projects .section-tag { color: var(--green-mid); }
+  #projects .section-tag::before { background: var(--green-mid); }
+  .projects-list { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 3rem; }
+  .project-row {
+    background: var(--white); border-radius: 14px; padding: 1.6rem 2rem;
+    display: grid; grid-template-columns: auto 1fr auto;
+    align-items: center; gap: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .project-row:hover { transform: translateX(6px); box-shadow: 0 6px 24px rgba(0,0,0,0.1); }
+  .project-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; flex-shrink: 0;
+  }
+  .project-icon.green { background: var(--green-pale); }
+  .project-icon.red { background: #fdecea; }
+  .project-icon.yellow { background: var(--yellow-pale); }
+  .project-info h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .project-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
+  .project-status { text-align: right; flex-shrink: 0; }
+  .status-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .status-ongoing { color: var(--green-mid); }
+  .status-planned { color: var(--yellow-gold); }
+  .status-stalled { color: var(--red-mid); }
+  .mini-bar { width: 100px; height: 5px; background: var(--gray-soft); border-radius: 100px; overflow: hidden; }
+  .mini-fill { height: 100%; border-radius: 100px; }
+  .fill-green { background: var(--green-mid); }
+  .fill-yellow { background: var(--yellow-light); }
+  .fill-red { background: var(--red-accent); }
+
+  /* ── OBSERVATIONS ── */
+  #observations { background: var(--green-deep); }
+  .obs-inner {
+    max-width: 700px; margin: 0 auto; text-align: center;
+  }
+  #observations .section-tag { color: var(--yellow-light); justify-content: center; }
+  #observations .section-tag::before { background: var(--yellow-light); }
+  #observations .section-title { color: var(--white); }
+  #observations .section-desc { color: rgba(255,255,255,0.65); margin: 0 auto 2.5rem; }
+  .obs-form {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px; padding: 2.5rem;
+    backdrop-filter: blur(10px);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; text-align: left; }
+  .form-group label { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.75); letter-spacing: 0.06em; text-transform: uppercase; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.15);
+    border-radius: 10px; padding: 0.75rem 1rem;
+    color: var(--white); font-size: 0.92rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none; resize: vertical;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--yellow-light);
+    background: rgba(255,255,255,0.12);
+  }
+  .form-group select option { background: var(--green-deep); color: var(--white); }
+  .form-full { grid-column: 1 / -1; }
+  .submit-btn {
+    width: 100%; margin-top: 1rem;
+    background: var(--yellow-gold); color: var(--text-dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700; font-size: 0.95rem; letter-spacing: 0.04em;
+    padding: 1rem 2rem; border-radius: 10px; border: none; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(212,160,23,0.4);
+  }
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,160,23,0.5); }
+  .form-notice {
+    margin-top: 1rem; font-size: 0.78rem; color: rgba(255,255,255,0.4);
+    display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+  }
+  #form-success {
+    display: none; background: rgba(77,184,119,0.15);
+    border: 1px solid rgba(77,184,119,0.4); border-radius: 12px;
+    padding: 1rem 1.5rem; color: var(--green-light);
+    font-weight: 600; margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0d2416;
+    padding: 2.5rem 3rem;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-left .logo { font-family: 'Playfair Display', serif; color: var(--yellow-light); font-size: 1rem; font-weight: 700; }
+  .footer-left p { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 0.3rem; }
+  .footer-flag { display: flex; gap: 0; border-radius: 4px; overflow: hidden; }
+  .flag-stripe { width: 22px; height: 14px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── EDUCATION ── */
+  #education { background: #eef3fb; }
+  #education .section-tag { color: #2c5fa8; }
+  #education .section-tag::before { background: #2c5fa8; }
+  #education .section-title { color: var(--text-dark); }
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .edu-institution {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .edu-institution:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(0,0,0,0.12); }
+  .edu-inst-header {
+    padding: 1.8rem 2rem 1.4rem;
+    display: flex; align-items: flex-start; gap: 1.2rem;
+  }
+  .edu-inst-header.blue { background: linear-gradient(135deg, #2c5fa8 0%, #1a3f7a 100%); }
+  .edu-inst-header.teal { background: linear-gradient(135deg, #1a6b5c 0%, #0d4437 100%); }
+  .edu-badge-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; flex-shrink: 0;
+  }
+  .edu-inst-title h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--white); line-height: 1.3; margin-bottom: 0.3rem;
+  }
+  .edu-inst-title .edu-location {
+    font-size: 0.78rem; color: rgba(255,255,255,0.65);
+    font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .edu-inst-body { padding: 1.6rem 2rem; }
+  .edu-inst-body p {
+    font-size: 0.88rem; color: var(--text-light); line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+  .edu-facts { display: flex; flex-direction: column; gap: 0.6rem; }
+  .edu-fact {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.85rem; color: var(--text-mid);
+  }
+  .edu-fact .fact-icon { font-size: 1rem; flex-shrink: 0; }
+  .edu-fact strong { color: var(--text-dark); }
+  .edu-divider {
+    height: 1px; background: var(--gray-soft); margin: 1rem 0;
+  }
+  .edu-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .edu-pill {
+    display: inline-block; padding: 0.25rem 0.75rem;
+    border-radius: 100px; font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .edu-pill.blue { background: #deeaf8; color: #2c5fa8; }
+  .edu-pill.teal { background: #d4ede8; color: #1a6b5c; }
+  .edu-overview {
+    margin-top: 2.5rem;
+    background: var(--white); border-radius: 14px; padding: 1.8rem 2rem;
+    border-left: 4px solid #2c5fa8;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex; gap: 1.2rem; align-items: flex-start;
+  }
+  .edu-overview .icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .edu-overview p { font-size: 0.87rem; color: var(--text-mid); line-height: 1.7; }
+  @media (max-width: 768px) {
+    .edu-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── HAMBURGER BUTTON ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    transition: background 0.2s;
+  }
+  .nav-hamburger:hover { background: rgba(255,255,255,0.08); }
+  .nav-hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+    transform-origin: center;
+  }
+  /* Animated X state */
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE MENU DRAWER ── */
+  .nav-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: var(--green-deep);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 3px solid var(--yellow-gold);
+    z-index: 99;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease, opacity 0.3s ease;
+    opacity: 0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .nav-mobile-menu.open {
+    max-height: 400px;
+    opacity: 1;
+  }
+  .nav-mobile-menu a {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1rem 1.8rem;
+    text-decoration: none;
+    color: rgba(255,255,255,0.82);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: background 0.18s, color 0.18s, padding-left 0.18s;
+  }
+  .nav-mobile-menu a:last-child { border-bottom: none; }
+  .nav-mobile-menu a:hover {
+    background: rgba(255,255,255,0.06);
+    color: var(--yellow-light);
+    padding-left: 2.2rem;
+  }
+  .nav-mobile-menu a .menu-icon {
+    font-size: 1.1rem;
+    width: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-mobile-menu a .menu-label { flex: 1; }
+  .nav-mobile-menu a .menu-arrow {
+    font-size: 0.7rem;
+    opacity: 0.4;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .nav-mobile-menu a:hover .menu-arrow { opacity: 1; transform: translateX(3px); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.2rem; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .nav-mobile-menu { display: block; }
+    .stats-band { gap: 2rem; padding: 1.5rem; }
+    section { padding: 4rem 1.2rem; }
+    .health-grid { grid-template-columns: 1fr; }
+    .agri-layout { grid-template-columns: 1fr; }
+    .land-grid { grid-template-columns: 1fr; }
+    .project-row { grid-template-columns: auto 1fr; }
+    .project-status { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Tubah <span>Subdivision</span></div>
+  <div class="nav-links">
+    <a href="#health">Health</a>
+    <a href="#agriculture">Agriculture</a>
+    <a href="#land">Land</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#observations">Observations</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU DRAWER -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="#health"><span class="menu-icon">❤️</span><span class="menu-label">Health</span><span class="menu-arrow">▶</span></a>
+  <a href="#agriculture"><span class="menu-icon">🌿</span><span class="menu-label">Agriculture</span><span class="menu-arrow">▶</span></a>
+  <a href="#land"><span class="menu-icon">⚖️</span><span class="menu-label">Land Disputes</span><span class="menu-arrow">▶</span></a>
+  <a href="#projects"><span class="menu-icon">🏗️</span><span class="menu-label">Projects</span><span class="menu-arrow">▶</span></a>
+  <a href="#education"><span class="menu-icon">🎓</span><span class="menu-label">Education</span><span class="menu-arrow">▶</span></a>
+  <a href="#observations"><span class="menu-icon">💬</span><span class="menu-label">Share Observation</span><span class="menu-arrow">▶</span></a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-badge">📍 Mezam Division · North West Region · Cameroon</div>
+    <h1>Welcome to <em>Tubah</em> Subdivision</h1>
+    <p class="hero-sub">A civic information hub tracking the health, agriculture, land affairs,<br>and developmental progress of the Tubah Subdivision community.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#observations" class="btn-outline">Share Observation</a>
+    </div>
+  </div>
+  <div class="hero-stripes">
+    <div class="hero-stripe stripe-green"></div>
+    <div class="hero-stripe stripe-red"></div>
+    <div class="hero-stripe stripe-yellow"></div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stat-item">
+    <div class="stat-num">47K+</div>
+    <div class="stat-label">Estimated Population</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">12</div>
+    <div class="stat-label">Active Health Facilities</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">6</div>
+    <div class="stat-label">Ongoing Dev. Projects</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Pending Land Disputes</div>
+  </div>
+</div>
+
+<!-- HEALTH -->
+<section id="health">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">❤️ Health Sector</div>
+      <h2 class="section-title">Healthcare in Tubah</h2>
+      <p class="section-desc">An overview of health infrastructure, common health challenges, and available medical services across the subdivision.</p>
+    </div>
+    <div class="health-grid reveal">
+      <div class="health-card">
+        <div class="card-icon">🏥</div>
+        <h3>Health Facilities</h3>
+        <p>Tubah has a District Hospital in Nkwen and several integrated health centres across villages including Bambili, Bambui, and Kejom Keku.</p>
+        <div class="health-stat"><span class="pill pill-green">12 Facilities</span> <span class="pill pill-yellow">3 Under Renovation</span></div>
+      </div>
+      <div class="health-card">
+        <div class="card-icon">🤒</div>
+        <h3>Prevalent Conditions</h3>
+        <p>Malaria remains the leading cause of outpatient visits. Respiratory infections, typhoid, and maternal complications are also commonly reported challenges.</p>
+        <div class="health-stat"><span class="pill pill-red">Malaria #1 Burden</span></div>
+      </div>
+      <div class="health-card">
+        <div class="card-icon">👶</div>
+        <h3>Maternal & Child Health</h3>
+        <p>Antenatal care coverage has improved with community health workers deployed in remote villages. Neonatal mortality reduction remains a priority.</p>
+        <div class="health-stat"><span class="pill pill-green">ANC Coverage Rising</span></div>
+      </div>
+      <div class="health-card">
+        <div class="card-icon">💊</div>
+        <h3>Drug Supply & Shortages</h3>
+        <p>Periodic stock-outs of essential medicines affect service delivery. Community pharmacies partially bridge gaps but accessibility is uneven in rural areas.</p>
+        <div class="health-stat"><span class="pill pill-red">Intermittent Shortages</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGRICULTURE -->
+<section id="agriculture">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">🌿 Agriculture</div>
+      <h2 class="section-title">Agriculture & Food Security</h2>
+      <p class="section-desc">Tubah's fertile highlands support diverse farming. Key crops and livestock sectors drive the local economy.</p>
+    </div>
+    <div class="agri-layout">
+      <div class="agri-cards reveal">
+        <div class="agri-card">
+          <div class="agri-icon">🥬</div>
+          <div>
+            <h4>Horticulture</h4>
+            <p>Irish potatoes, cabbages, carrots, and leafy vegetables thrive in the cool highland climate. Bambili and Bambui are key production zones supplying Bamenda markets.</p>
+          </div>
+        </div>
+        <div class="agri-card">
+          <div class="agri-icon">☕</div>
+          <div>
+            <h4>Coffee & Cash Crops</h4>
+            <p>Arabica coffee cultivation has deep historical roots. Arabica cooperatives operate in parts of the subdivision, though output has declined over recent years.</p>
+          </div>
+        </div>
+        <div class="agri-card">
+          <div class="agri-icon">🐄</div>
+          <div>
+            <h4>Livestock Farming</h4>
+            <p>Cattle rearing by Mbororo pastoralists coexists alongside smallholder farming. Tensions over grazing corridors occasionally arise, requiring mediation.</p>
+          </div>
+        </div>
+        <div class="agri-card">
+          <div class="agri-icon">🌱</div>
+          <div>
+            <h4>Extension Services</h4>
+            <p>Government and NGO agricultural extension officers offer training on improved seeds, soil management, and post-harvest handling to reduce losses.</p>
+          </div>
+        </div>
+      </div>
+      <div class="agri-side reveal">
+        <h3>Sector Coverage Estimates</h3>
+        <div class="progress-item">
+          <div class="progress-label"><span>Horticulture</span><span>72%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-label"><span>Coffee Farming</span><span>38%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:38%"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-label"><span>Livestock</span><span>55%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:55%"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-label"><span>Agroforestry</span><span>22%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:22%"></div></div>
+        </div>
+        <div style="margin-top:1.8rem; padding-top:1.2rem; border-top:1px solid rgba(255,255,255,0.12);">
+          <p style="font-size:0.82rem; color:rgba(255,255,255,0.6); line-height:1.65;">Estimates based on land-use surveys and cooperative records. Percentages reflect proportion of active farming households per sector.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAND DISPUTES -->
+<section id="land">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">⚖️ Land Disputes</div>
+      <h2 class="section-title">Land Affairs & Disputes</h2>
+      <p class="section-desc">Land tenure conflicts are a recurring challenge in Tubah. Below is an overview of key dispute categories and resolution mechanisms.</p>
+    </div>
+    <div class="land-grid reveal">
+      <div class="land-card">
+        <div class="num">14</div>
+        <h3>Boundary Conflicts</h3>
+        <p>Inter-village and family-level boundary disputes are the most common, often involving inherited land with no formal documentation.</p>
+        <div style="margin-top:0.8rem"><span class="pill pill-red">High Frequency</span></div>
+      </div>
+      <div class="land-card">
+        <div class="num">06</div>
+        <h3>Farmer–Grazier Disputes</h3>
+        <p>Conflicts between crop farmers and Fulani cattle herders over land use and crop destruction are regularly mediated by local chiefs.</p>
+        <div style="margin-top:0.8rem"><span class="pill pill-yellow">Seasonal</span></div>
+      </div>
+      <div class="land-card">
+        <div class="num">03</div>
+        <h3>State Land Disputes</h3>
+        <p>Disputes involving government-allocated land and community claims, particularly near university lands in Bambili, are pending legal resolution.</p>
+        <div style="margin-top:0.8rem"><span class="pill pill-red">Pending Court</span></div>
+      </div>
+    </div>
+    <div class="land-note reveal">
+      <div class="icon">⚠️</div>
+      <p><strong>Resolution Pathways:</strong> Most land disputes in Tubah are handled through traditional councils and customary law before escalating to civil courts. The Sub-Divisional Officer (SDO) plays a key mediation role. Community members are encouraged to register land titles through the Divisional Delegation of Land Affairs to reduce future conflicts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">🏗️ Development Projects</div>
+      <h2 class="section-title">Ongoing & Planned Projects</h2>
+      <p class="section-desc">Infrastructure and development initiatives transforming Tubah Subdivision.</p>
+    </div>
+    <div class="projects-list reveal">
+      <div class="project-row">
+        <div class="project-icon green">🛣️</div>
+        <div class="project-info">
+          <h3>Bambili–Bambui Road Rehabilitation</h3>
+          <p>Resurfacing and widening of the connecting road between Bambili and Bambui to ease agricultural transport and reduce accident risks.</p>
+        </div>
+        <div class="project-status">
+          <div class="status-label status-ongoing">● Ongoing</div>
+          <div class="mini-bar"><div class="mini-fill fill-green" style="width:65%"></div></div>
+        </div>
+      </div>
+      <div class="project-row">
+        <div class="project-icon green">💧</div>
+        <div class="project-info">
+          <h3>Community Water Supply — Kejom Keku</h3>
+          <p>Installation of a gravity-fed water system to provide clean drinking water to over 2,000 residents in Kejom Keku village.</p>
+        </div>
+        <div class="project-status">
+          <div class="status-label status-ongoing">● Ongoing</div>
+          <div class="mini-bar"><div class="mini-fill fill-green" style="width:80%"></div></div>
+        </div>
+      </div>
+      <div class="project-row">
+        <div class="project-icon yellow">🏫</div>
+        <div class="project-info">
+          <h3>Primary School Blocks Construction — Ntambeng</h3>
+          <p>Construction of three additional classrooms at GS Ntambeng to address overcrowding and improve learning conditions for pupils.</p>
+        </div>
+        <div class="project-status">
+          <div class="status-label status-planned">◌ Planned</div>
+          <div class="mini-bar"><div class="mini-fill fill-yellow" style="width:20%"></div></div>
+        </div>
+      </div>
+      <div class="project-row">
+        <div class="project-icon red">🏥</div>
+        <div class="project-info">
+          <h3>Renovation of Bambui Health Centre</h3>
+          <p>Structural repairs and equipment upgrades at Bambui Integrated Health Centre to restore full maternity and emergency services.</p>
+        </div>
+        <div class="project-status">
+          <div class="status-label status-stalled">⏸ Stalled</div>
+          <div class="mini-bar"><div class="mini-fill fill-red" style="width:35%"></div></div>
+        </div>
+      </div>
+      <div class="project-row">
+        <div class="project-icon green">⚡</div>
+        <div class="project-info">
+          <h3>Rural Electrification — Mbatu & Ndzah</h3>
+          <p>Extension of the national electricity grid to Mbatu and Ndzah villages, benefiting approximately 800 households.</p>
+        </div>
+        <div class="project-status">
+          <div class="status-label status-ongoing">● Ongoing</div>
+          <div class="mini-bar"><div class="mini-fill fill-green" style="width:50%"></div></div>
+        </div>
+      </div>
+      <div class="project-row">
+        <div class="project-icon yellow">🌉</div>
+        <div class="project-info">
+          <h3>Footbridge over Mezam River — Chomba</h3>
+          <p>Construction of a pedestrian footbridge to connect Chomba community with main roads, especially vital during rainy season flooding.</p>
+        </div>
+        <div class="project-status">
+          <div class="status-label status-planned">◌ Planned</div>
+          <div class="mini-bar"><div class="mini-fill fill-yellow" style="width:10%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">🎓 Education Sector</div>
+      <h2 class="section-title">Higher Education in Tubah</h2>
+      <p class="section-desc">Tubah Subdivision is home to two major national tertiary institutions, making it an important academic hub in the North West Region.</p>
+    </div>
+    <div class="edu-grid reveal">
+
+      <!-- University of Bamenda -->
+      <div class="edu-institution">
+        <div class="edu-inst-header blue">
+          <div class="edu-badge-icon">🏛️</div>
+          <div class="edu-inst-title">
+            <h3>University of Bamenda</h3>
+            <div class="edu-location">📍 Bambili, Tubah Subdivision</div>
+          </div>
+        </div>
+        <div class="edu-inst-body">
+          <p>Established in 2010, the University of Bamenda (UBa) is a state university serving the North West Region of Cameroon. Its main campus is located in Bambili, within Tubah Subdivision, and hosts several faculties and higher technical institutes.</p>
+          <div class="edu-facts">
+            <div class="edu-fact"><span class="fact-icon">📅</span><span>Founded <strong>2010</strong></span></div>
+            <div class="edu-fact"><span class="fact-icon">🏫</span><span>Main campus in <strong>Bambili</strong></span></div>
+            <div class="edu-fact"><span class="fact-icon">👨‍🎓</span><span>Serves students from across the <strong>North West Region</strong></span></div>
+            <div class="edu-fact"><span class="fact-icon">🇨🇲</span><span>Government-funded <strong>state university</strong></span></div>
+          </div>
+          <div class="edu-divider"></div>
+          <div style="font-size:0.8rem; font-weight:600; color:var(--text-mid); letter-spacing:0.05em; text-transform:uppercase; margin-bottom:0.5rem;">Key Faculties & Schools</div>
+          <div class="edu-pills">
+            <span class="edu-pill blue">Faculty of Science</span>
+            <span class="edu-pill blue">Faculty of Arts</span>
+            <span class="edu-pill blue">Faculty of Social Sciences</span>
+            <span class="edu-pill blue">Faculty of Health Sciences</span>
+            <span class="edu-pill blue">Higher Technical Teacher Training College</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- National Polytechnic Institute -->
+      <div class="edu-institution">
+        <div class="edu-inst-header teal">
+          <div class="edu-badge-icon">⚙️</div>
+          <div class="edu-inst-title">
+            <h3>National Polytechnic Institute Bamenda</h3>
+            <div class="edu-location">📍 Bambui, Tubah Subdivision</div>
+          </div>
+        </div>
+        <div class="edu-inst-body">
+          <p>The National Polytechnic Institute Bamenda (POLYBAM), located in Bambui, is a public professional institution under the University of Bamenda. It focuses on practical, technical, and vocational training to develop skilled professionals for Cameroon's workforce.</p>
+          <div class="edu-facts">
+            <div class="edu-fact"><span class="fact-icon">🏫</span><span>Located in <strong>Bambui</strong></span></div>
+            <div class="edu-fact"><span class="fact-icon">🔧</span><span>Focus on <strong>technical & vocational training</strong></span></div>
+            <div class="edu-fact"><span class="fact-icon">🏛️</span><span>Under the <strong>University of Bamenda</strong></span></div>
+            <div class="edu-fact"><span class="fact-icon">💼</span><span>Trains graduates for <strong>industry & public sector</strong></span></div>
+          </div>
+          <div class="edu-divider"></div>
+          <div style="font-size:0.8rem; font-weight:600; color:var(--text-mid); letter-spacing:0.05em; text-transform:uppercase; margin-bottom:0.5rem;">Training Departments</div>
+          <div class="edu-pills">
+            <span class="edu-pill teal">Civil Engineering</span>
+            <span class="edu-pill teal">Electrical Engineering</span>
+            <span class="edu-pill teal">Computer Science</span>
+            <span class="edu-pill teal">Mechanical Engineering</span>
+            <span class="edu-pill teal">Business & Management</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="edu-overview reveal">
+      <div class="icon">📚</div>
+      <p><strong>Education & Community:</strong> The presence of these two institutions has significantly shaped Tubah's economy and population. Bambili and Bambui host thousands of students and staff annually, driving demand for housing, transport, and local services. Community members are encouraged to engage with outreach programmes run by both institutions, and to report education-related infrastructure needs through the observation form below.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OBSERVATIONS -->
+<section id="observations">
+  <div class="obs-inner">
+    <div class="section-tag">💬 Community Voice</div>
+    <h2 class="section-title">Share Your Observation</h2>
+    <p class="section-desc">Have something to report about health, agriculture, land issues, or any project in Tubah? Your observations help keep our records accurate and drive accountability.</p>
+    <div class="obs-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="obs-name" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label>Phone / Email</label>
+          <input type="text" id="obs-contact" placeholder="How to reach you (optional)">
+        </div>
+        <div class="form-group">
+          <label>Village / Area</label>
+          <input type="text" id="obs-village" placeholder="e.g. Bambili, Bambui…">
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="obs-category">
+            <option value="">Select a sector…</option>
+            <option>Health</option>
+            <option>Agriculture</option>
+            <option>Education</option>
+            <option>Land Dispute</option>
+            <option>Road Construction</option>
+            <option>Water & Electricity</option>
+            <option>Education</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group form-full">
+          <label>Your Observation</label>
+          <textarea id="obs-message" rows="5" placeholder="Describe what you've observed, a concern, or a suggestion for the subdivision administration…"></textarea>
+        </div>
+      </div>
+      <button class="submit-btn" onclick="sendObservation()">📨 Submit Observation</button>
+      <div class="form-notice">🔒 Submitted to subdivision administration · Your privacy is respected</div>
+      <div id="form-success">✅ Thank you! Your observation has been sent to the administration.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <div class="logo">Tubah Subdivision</div>
+    <p>Mezam Division · North West Region · Republic of Cameroon</p>
+    <p style="margin-top:0.5rem; font-size:0.75rem; color:rgba(255,255,255,0.25);">Admin contact: fridalynnkokueachembom@gmail.com</p>
+  </div>
+  <div style="text-align:right;">
+    <div class="footer-flag">
+      <div class="flag-stripe" style="background:#007A5E;"></div>
+      <div class="flag-stripe" style="background:#CE1126; display:flex; align-items:center; justify-content:center; font-size:0.55rem;">⭐</div>
+      <div class="flag-stripe" style="background:#FCD116;"></div>
+    </div>
+    <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); margin-top:0.5rem;">© 2025 Tubah Community Info Hub</p>
+  </div>
+</footer>
+
+<script>
+  // Hamburger menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close menu when a link is clicked
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+    });
+  });
+
+  // Close menu on outside click
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+    }
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Form submission via mailto
+  function sendObservation() {
+    const name = document.getElementById('obs-name').value.trim();
+    const contact = document.getElementById('obs-contact').value.trim();
+    const village = document.getElementById('obs-village').value.trim();
+    const category = document.getElementById('obs-category').value;
+    const message = document.getElementById('obs-message').value.trim();
+
+    if (!message || !category) {
+      alert('Please select a category and write your observation before submitting.');
+      return;
+    }
+
+    const body = `TUBAH SUBDIVISION — COMMUNITY OBSERVATION\n\nName: ${name || 'Anonymous'}\nContact: ${contact || 'Not provided'}\nVillage/Area: ${village || 'Not specified'}\nCategory: ${category}\n\nObservation:\n${message}`;
+
+    const mailtoLink = `mailto:fridalynnkokueachembom@gmail.com?subject=Community Observation: ${encodeURIComponent(category)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+
+    document.getElementById('form-success').style.display = 'block';
+    setTimeout(() => document.getElementById('form-success').style.display = 'none', 6000);
+  }
+</script>
+</body>
+</html>
