@@ -545,10 +545,94 @@
     .health-grid { grid-template-columns: 1fr; }
     .agri-layout { grid-template-columns: 1fr; }
     .land-grid { grid-template-columns: 1fr; }
-    .project-row { grid-template-columns: auto 1fr; }
-    .project-status { display: none; }
-    .form-row { grid-template-columns: 1fr; }
-    footer { flex-direction: column; text-align: center; }
+    /* ── GALLERY & EVENTS ── */
+  #gallery { background: var(--green-deep); color: var(--white); }
+  #gallery .section-tag { color: var(--yellow-light); }
+  #gallery .section-tag::before { background: var(--yellow-gold); }
+  #gallery .section-title { color: var(--white); }
+  #gallery .section-desc { color: rgba(255,255,255,0.65); }
+
+  .gallery-event-block { margin-top: 3.5rem; }
+  .gallery-event-block + .gallery-event-block { margin-top: 5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 5rem; }
+
+  .event-header { margin-bottom: 1.5rem; }
+  .event-label {
+    display: inline-block;
+    background: rgba(212,160,23,0.2); border: 1px solid rgba(212,160,23,0.5);
+    color: var(--yellow-light); font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.3rem 0.9rem; border-radius: 100px; margin-bottom: 0.75rem;
+  }
+  .event-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900;
+    color: var(--white); margin-bottom: 0.5rem; line-height: 1.2;
+  }
+  .event-desc { font-size: 0.95rem; color: rgba(255,255,255,0.62); line-height: 1.75; max-width: 700px; }
+
+  /* Video row */
+  .video-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .video-wrap {
+    background: rgba(0,0,0,0.3); border-radius: 14px; overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  }
+  .video-wrap iframe { width: 100%; aspect-ratio: 16/9; display: block; border: none; }
+  .video-caption {
+    padding: 0.85rem 1rem;
+    font-size: 0.82rem; color: rgba(255,255,255,0.55); font-style: italic;
+  }
+
+  /* Photo grid */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem; margin-top: 1.5rem;
+  }
+  .photo-card {
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    position: relative; cursor: pointer;
+    background: rgba(0,0,0,0.25);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .photo-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.45); }
+  .photo-card img {
+    width: 100%; height: 220px; object-fit: cover; display: block;
+    transition: transform 0.4s ease;
+  }
+  .photo-card:hover img { transform: scale(1.04); }
+  .photo-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.82));
+    padding: 1.2rem 0.9rem 0.75rem;
+    font-size: 0.8rem; color: rgba(255,255,255,0.88); line-height: 1.45;
+    font-style: italic;
+  }
+  .photo-card.featured { grid-column: span 2; }
+  .photo-card.featured img { height: 320px; }
+
+  /* Lightbox */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 8px; object-fit: contain; box-shadow: 0 8px 48px rgba(0,0,0,0.6); }
+  .lightbox-close {
+    position: absolute; top: 1.2rem; right: 1.5rem;
+    font-size: 2rem; color: var(--white); cursor: pointer;
+    background: rgba(255,255,255,0.1); border: none;
+    width: 44px; height: 44px; border-radius: 50%; line-height: 44px; text-align: center;
+  }
+  .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+  @media (max-width: 700px) {
+    .video-row { grid-template-columns: 1fr; }
+    .photo-card.featured { grid-column: span 1; }
+    .photo-card.featured img { height: 220px; }
   }
 </style>
 </head>
@@ -563,6 +647,7 @@
     <a href="#land">Land</a>
     <a href="#projects">Projects</a>
     <a href="#education">Education</a>
+    <a href="#gallery">Gallery</a>
     <a href="#observations">Observations</a>
   </div>
   <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -579,6 +664,7 @@
   <a href="#land"><span class="menu-icon">⚖️</span><span class="menu-label">Land Disputes</span><span class="menu-arrow">▶</span></a>
   <a href="#projects"><span class="menu-icon">🏗️</span><span class="menu-label">Projects</span><span class="menu-arrow">▶</span></a>
   <a href="#education"><span class="menu-icon">🎓</span><span class="menu-label">Education</span><span class="menu-arrow">▶</span></a>
+  <a href="#gallery"><span class="menu-icon">🎞️</span><span class="menu-label">Gallery & Events</span><span class="menu-arrow">▶</span></a>
   <a href="#observations"><span class="menu-icon">💬</span><span class="menu-label">Share Observation</span><span class="menu-arrow">▶</span></a>
 </div>
 
@@ -913,6 +999,132 @@
   </div>
 </section>
 
+<!-- GALLERY & EVENTS -->
+<section id="gallery">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">🎞️ Gallery &amp; Events</div>
+      <h2 class="section-title">Life in Tubah Subdivision</h2>
+      <p class="section-desc">From national celebrations to grassroots sport, Tubah's community spirit is alive and vibrant. Explore highlights from recent events across the sub-division.</p>
+    </div>
+
+    <!-- EVENT 1: 54th National Unity Day -->
+    <div class="gallery-event-block reveal">
+      <div class="event-header">
+        <div class="event-label">📅 20th May 2026 · 54th Edition</div>
+        <h3 class="event-title">National Unity Day Celebrations — Tubah Sub-Division</h3>
+        <p class="event-desc">Tubah marked Cameroon's 54th National Unity Day with a powerful display of discipline, patriotism, and community pride. Under the theme <em>"National Unity: Backbone of Our Defence System, Bedrock of Cameroon's Development,"</em> the Divisional Officer presided over a colourful parade featuring uniformed forces, civic groups, and students from across the sub-division. The grandstand came alive with flags, cheers, and the unmistakable energy of a community that believes in its nation.</p>
+      </div>
+
+      <!-- YouTube Videos -->
+      <div class="video-row">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/ktFH2vxstjM" title="National Unity Day Tubah 2026 — Highlights" allowfullscreen loading="lazy"></iframe>
+          <div class="video-caption">🎬 Highlights of the 54th National Unity Day parade in Tubah — military march-past, flag ceremony, and official proceedings at the grand stand.</div>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/NB3ttb605OI" title="National Unity Day Tubah 2026 — Full Ceremony" allowfullscreen loading="lazy"></iframe>
+          <div class="video-caption">🎬 Full ceremony coverage — civic groups, community organisations, and the Divisional Officer's address to the people of Tubah.</div>
+        </div>
+      </div>
+
+      <!-- Unity Day Photos -->
+      <div class="photo-grid">
+        <div class="photo-card featured" onclick="openLightbox(this)">
+          <img src="/images/IMG-20260527-WA0012.jpg" alt="54th National Unity Day official poster — Tubah Sub-Division" loading="lazy">
+          <div class="photo-caption">The 54th National Unity Day official poster for Tubah Sub-Division, presided over by the Divisional Officer, Massango Metougue Narcisse.</div>
+        </div>
+        <div class="photo-card" onclick="openLightbox(this)">
+          <img src="/images/IMG-20260527-WA0009.jpg" alt="Military parade — National Unity Day Tubah" loading="lazy">
+          <div class="photo-caption">Uniformed forces march in precision formation on the parade grounds, a testament to Tubah's security and order.</div>
+        </div>
+        <div class="photo-card" onclick="openLightbox(this)">
+          <img src="/images/IMG-20260527-WA0010.jpg" alt="Officials saluting at the parade — Tubah National Unity Day" loading="lazy">
+          <div class="photo-caption">Senior officials render honours during the flag salute — a solemn moment uniting every rank and citizen present.</div>
+        </div>
+        <div class="photo-card" onclick="openLightbox(this)">
+          <img src="/images/IMG-20260528-WA0014.jpg" alt="Police contingent at National Unity Day parade" loading="lazy">
+          <div class="photo-caption">The police contingent stands at attention — shields, rifles, and unwavering resolve on full display for the crowd.</div>
+        </div>
+                <div class="photo-card" onclick="openLightbox(this)">
+          <img src="/images/IMG-20260528-WA0021.jpg" alt="GM UNVDA" loading="lazy" >
+          <div class="photo-caption">Not forgetting the presence of the General Manager 
+            of UNVDA, who also doubles as the President General of the Bambili Development Association</div>
+        </div>
+
+        <div class="photo-card" onclick="openLightbox(this)">
+          <img src="/images/IMG-20260528-WA0018.jpg" alt="Divisional Officer presiding over ceremony" loading="lazy">
+          <div class="photo-caption">The Divisional Officer, in full dress uniform, presides with authority and grace over the 54th edition celebrations.</div>
+        </div>
+        <div class="photo-card" onclick="openLightbox(this)">
+          <img src="/images/IMG-20260528-WA0019.jpg" alt="Civic youth marching — National Unity Day Tubah" loading="lazy">
+          <div class="photo-caption">Young people in civic service uniforms march proudly — the next generation carrying the torch of national unity forward.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVENT 2: Tubah Unity Basketball Championship -->
+    <div class="gallery-event-block reveal">
+      <div class="event-header">
+        <div class="event-label">🏀 16th May 2026 · Bambili Down Court</div>
+        <h3 class="event-title">Tubah Unity Basketball Championship — Finals Day</h3>
+        <p class="event-desc">The Bambili Down Court roared to life on Finals Day of the Tubah Unity Basketball Championship — a tournament sponsored by the Divisional Officer and coordinated by the NW Regional Coach. Two electrifying finals lit up the court: the <strong>Dribble Divas vs. Chicago Btulls</strong> in the girls' showdown at 10:00 AM, followed by the men's clash between the <strong>Bambili Ballers and New Generation</strong> at 11:00 AM. With medals, trophies, and bragging rights on the line, both competitions delivered moments that will be talked about across the sub-division for years to come.</p>
+      </div>
+
+      <!-- Finals Posters -->
+      <div class="photo-grid" style="margin-bottom:1.5rem;">
+        <div class="photo-card" onclick="openLightbox(this)">
+          <img src="/images/IMG-20260527-WA0013.jpg" alt="Girls Finals poster — Dribble Divas vs Chicago Btulls" loading="lazy">
+          <div class="photo-caption">Girls Finals: Dribble Divas vs Chicago Btulls — 16th May, 10:00 AM, Bambili Down Court. Sponsored by D.O Tubah.</div>
+          </div>
+          <div class="photo-card" onclick="openLightbox(this)">
+            <img src="/images/IMG-20260527-WA0014.jpg" alt="Men's Finals poster — Bambili Ballers vs New Generation" loading="lazy">
+          <div class="photo-caption">Men's Finals: Bambili Ballers vs New Generation — 16th May, 11:00 AM. One game. One winner. One champion.</div>
+        </div>
+      </div>
+
+      <!-- Championship Photos -->
+              <div class="photo-card" onclick="openLightbox(this)">
+          <img src="/images/IMG-20260528-WA0016.jpg" alt="Divisional Officer presenting trophy — National Unity Day" loading="lazy">
+          <div class="photo-caption">The Divisional Officer presents a trophy to outstanding participants — rewarding excellence and dedication to community service.</div>
+        </div>
+      <div class="photo-grid">
+        <div class="photo-card featured" onclick="openLightbox(this)">
+          <img src="/images/IMG-20260528-WA0009.jpg" alt="Championship finalists group photo — Tubah Basketball" loading="lazy">
+          <div class="photo-caption">Champions and runners-up gather on the court for the post-finals group photo — medals gleaming, spirits soaring, unity embodied.</div>
+        </div>
+        <div class="photo-card" onclick="openLightbox(this)">
+          <img src="/images/IMG-20260528-WA0010.jpg" alt="Basketball teams celebrate — Tubah Unity Championship" loading="lazy">
+          <div class="photo-caption">Girls' finalists celebrate together — because in Tubah, competition brings communities closer, not further apart.</div>
+        </div>
+
+        <div class="photo-card" onclick="openLightbox(this)">
+          <img src="/images/IMG-20260528-WA0012.jpg" alt="Players and coaches after the finals" loading="lazy">
+          <div class="photo-caption">Players and coaches stand united after a hard-fought final — sport as a language that every village in Tubah speaks fluently.</div>
+        </div>
+        <div class="photo-card" onclick="openLightbox(this)">
+          <img src="/images/IMG-20260528-WA0015.jpg" alt="Do and GM UNVDA" loading="lazy">
+          <div class="photo-caption">The DO receiving a medal for the hardwork he does in fostering unity in Tubah subdivision.</div>
+        </div>
+
+        <div class="photo-card" onclick="openLightbox(this)">
+          <img src="/images/IMG-20260528-WA0017.jpg" alt="Policeman recieves a medal" loading="lazy">
+          <div class="photo-caption"></div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
 <!-- OBSERVATIONS -->
 <section id="observations">
   <div class="obs-inner">
@@ -1038,6 +1250,21 @@
     document.getElementById('form-success').style.display = 'block';
     setTimeout(() => document.getElementById('form-success').style.display = 'none', 6000);
   }
-</script>
-</body>
-</html>
+  // Lightbox
+  function openLightbox(card) {
+    const img = card.querySelector('img');
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox-img').alt = img.alt;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  
+  </script>
+
+  </body>
+</html> 
