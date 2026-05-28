@@ -534,18 +534,7 @@
   }
   .nav-mobile-menu a:hover .menu-arrow { opacity: 1; transform: translateX(3px); }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    nav { padding: 0 1.2rem; }
-    .nav-links { display: none; }
-    .nav-hamburger { display: flex; }
-    .nav-mobile-menu { display: block; }
-    .stats-band { gap: 2rem; padding: 1.5rem; }
-    section { padding: 4rem 1.2rem; }
-    .health-grid { grid-template-columns: 1fr; }
-    .agri-layout { grid-template-columns: 1fr; }
-    .land-grid { grid-template-columns: 1fr; }
-    /* ── GALLERY & EVENTS ── */
+  /* ── GALLERY & EVENTS ── */
   #gallery { background: var(--green-deep); color: var(--white); }
   #gallery .section-tag { color: var(--yellow-light); }
   #gallery .section-tag::before { background: var(--yellow-gold); }
@@ -570,6 +559,44 @@
   }
   .event-desc { font-size: 0.95rem; color: rgba(255,255,255,0.62); line-height: 1.75; max-width: 700px; }
 
+  /* ── TABLET ── */
+  @media (max-width: 1024px) {
+    .land-grid { grid-template-columns: 1fr 1fr; }
+    .agri-layout { grid-template-columns: 1fr; }
+    .project-row { grid-template-columns: auto 1fr; }
+    .project-status { grid-column: 2; padding-left: 4.5rem; text-align: left; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.2rem; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .nav-mobile-menu { display: block; }
+    .stats-band { gap: 1.5rem; padding: 1.5rem 1rem; }
+    section { padding: 4rem 1.2rem; }
+    .health-grid { grid-template-columns: 1fr; }
+    .agri-layout { grid-template-columns: 1fr; }
+    .land-grid { grid-template-columns: 1fr; }
+    .project-row {
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+    .project-status {
+      grid-column: 1 / -1;
+      text-align: left;
+      padding-left: 0;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .mini-bar { width: 80px; }
+    .form-row { grid-template-columns: 1fr; }
+    .form-full { grid-column: 1; }
+    footer { padding: 2rem 1.2rem; flex-direction: column; align-items: flex-start; }
+    footer > div:last-child { text-align: left; align-self: flex-start; }
+    .obs-form { padding: 1.5rem 1.2rem; }
+    .gallery-event-block + .gallery-event-block { margin-top: 3.5rem; padding-top: 3.5rem; }
+  }
   /* Video row */
   .video-row {
     display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
@@ -674,7 +701,7 @@
   <div class="hero-content">
     <div class="hero-badge">📍 Mezam Division · North West Region · Cameroon</div>
     <h1>Welcome to <em>Tubah</em> Subdivision</h1>
-    <p class="hero-sub">A civic information hub tracking the health, agriculture, land affairs,<br>and developmental progress of the Tubah Subdivision community.</p>
+    <p class="hero-sub">A civic information hub tracking the health, agriculture, land affairs, and developmental progress of the Tubah Subdivision community.</p>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">View Projects</a>
       <a href="#observations" class="btn-outline">Share Observation</a>
